@@ -18,7 +18,7 @@ module Ditch
     # * +cell+ column-designation such as 'A'
     def get( cell )
       creek_value = @creek_row["#{cell.upcase}#{@index}"]
-      (creek_value.nil? || creek_value == 'NULL' || creek_value.empty?) ? nil : creek_value
+      (creek_value.nil? || creek_value == 'NULL' || (creek_value.class.method_defined?(:empty?) && creek_value.empty?)) ? nil : creek_value
     end
 
     # Get cell value from 'header-title'
